@@ -1,0 +1,15 @@
+@import "styles/colors";
+
+.navContainer {
+  width: 100%;
+  height: 60px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  .logo {
+    font-size: 36px;
+    color: $primary;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+  }
+}

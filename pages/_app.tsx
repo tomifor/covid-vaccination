@@ -4,6 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react"
 import theme from '../theme/theme'
 import Footer from '../src/components/modules/footer/Footer'
 import Head from 'next/head'
+import Nav from '../src/components/modules/Nav/Nav'
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ChakraProvider theme={theme}>
+        <Nav/>
         <Component {...pageProps} />
         <Footer/>
       </ChakraProvider>
