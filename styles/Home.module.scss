@@ -2,7 +2,6 @@
 
 .container {
   min-height: 100vh;
-  height: 100vh;
 }
 
 .main {
@@ -16,10 +15,14 @@
     height: 150px;
     text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #4b4b4b;
     background-color: #e5e5e5;
+    p {
+      margin: 0;
+    }
   }
   .form {
     padding: 30px 10px;
