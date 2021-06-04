@@ -10,7 +10,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang={'es'}>
         <Head>
           <link crossOrigin="true" href="https://fonts.gstatic.com" rel="preconnect" />
           <link

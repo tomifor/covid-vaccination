@@ -1,33 +1,28 @@
-import React from 'react'
-import styles from '../../../../styles/Home.module.scss'
-import Image from 'next/image'
+import React from 'react';
+import styles from '../../../../styles/Home.module.scss';
+import Image from 'next/image';
 
 const Footer = () => {
-
   return (
     <footer className={styles.footer}>
-      <a
-        href="https://twitter.com/tomifor"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by{' '}
-        <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+      <a href="https://twitter.com/tomifor" rel="noopener noreferrer" target="_blank">
+        Developed by @tomifor
+      </a>
+      <a href="https://covidstats.com.ar/" rel="noopener noreferrer" target="_blank">
+        Data by covidstats.com.ar
       </a>
       <a
         href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
         rel="noopener noreferrer"
+        target="_blank"
       >
-        Developed by{' '}
+        Powered by{' '}
         <span className={styles.logo}>
-            @tomifor
-          </span>
+          <Image alt="Vercel Logo" height={16} src="/vercel.svg" width={72} />
+        </span>
       </a>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
