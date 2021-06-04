@@ -1,0 +1,19 @@
+.container {
+  .header {
+    text-align: center;
+    background-color: lighten(#D93223, 40);
+    padding: 15px 0;
+    .title {
+      color: #D93223;
+      font-family: 'Squada One', 'Lato', Helvetica, sans-serif;
+      font-size: 2.5rem;
+      margin: 15px 0;
+    }
+  }
+  .indicators {
+    padding: 10px 0;
+    max-width: 1200px;
+    margin: auto;
+  }
+}
+

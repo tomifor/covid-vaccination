@@ -1,31 +1,38 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import React from 'react';
+import Document, {Html, Head, Main, NextScript, DocumentContext} from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    const initialProps = await Document.getInitialProps(ctx);
+
+    return {...initialProps};
   }
 
   render() {
     return (
       <Html>
         <Head>
+          <link crossOrigin="true" href="https://fonts.gstatic.com" rel="preconnect" />
           <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="true"
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap"
+            rel="stylesheet"
           />
-          <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap"
-                rel="stylesheet"/>
-          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet"/>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
-        <Main />
-        <NextScript />
+          <Main />
+          <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;

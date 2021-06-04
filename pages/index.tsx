@@ -1,18 +1,9 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
-import { getIndicators } from '../src/utils/parser'
-import { vaccinationDataExample } from '../src/data/example'
-import MainLayout from '../src/components/layouts/MainLayout'
+import React from "react";
 
-export default function Home() {
+import MainLayout from "../src/components/layouts/MainLayout";
 
+const Home = () => {
+  return <MainLayout />;
+};
 
-
-  return (
-    <div className={styles.container}>
-      <MainLayout/>
-
-    </div>
-  )
-}
+export default Home;

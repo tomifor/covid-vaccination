@@ -1,13 +1,12 @@
-import Axios from 'axios'
-
+import Axios from 'axios';
 
 const api = Axios.create({
   baseURL: 'https://covidstats.com.ar/ws',
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-})
+    Accept: '*/*',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  },
+});
 
-export default api
-
+export default api;
