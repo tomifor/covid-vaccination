@@ -12,13 +12,20 @@ const MunicipalityDetail = ({
   const router = useRouter();
   const provincesId = router.query.provinceId ? router.query.provinceId.toString() : '';
   const municipalityId = router.query.municipalityId ? router.query.municipalityId.toString() : '';
+  const municipality = municipalities[provincesId].find(
+    (p) => p.value.toString() === municipalityId,
+  );
 
-  console.log(data);
+  if (!municipality) {
+    router.push('/404');
+
+    return <div />;
+  }
 
   return (
     <LocationDetailLayout
       data={data}
-      location={municipalities[provincesId].find((p) => p.value === municipalityId)}
+      location={{value: municipality.value, label: municipality.label}}
     />
   );
 };
@@ -32,7 +39,10 @@ export const getServerSideProps: GetServerSideProps = async (
 
   try {
     if (provinceId && municipalityId) {
-      const res = await vaccinationService.getMunicipalityData(provinceId.toString(), municipalityId.toString());
+      const res = await vaccinationService.getMunicipalityData(
+        provinceId.toString(),
+        municipalityId.toString(),
+      );
 
       return {props: {data: res, error: false}};
     } else {

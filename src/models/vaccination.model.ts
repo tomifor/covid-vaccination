@@ -2,6 +2,7 @@ export interface VaccinationDto {
   fecha_inicial: string;
   dosis1: number[];
   dosis2: number[];
+  dosisdistribuidas: number[];
   dias: number;
   poblacion: population;
   microdato: boolean;
@@ -16,6 +17,7 @@ export interface population {
 }
 
 export interface VaccinationIndicators {
+  lastUpdate: string;
   totalAppliedDoses: string;
   totalAppliedFirstDoses: string;
   totalAppliedSecondDoses: string;
@@ -23,4 +25,5 @@ export interface VaccinationIndicators {
   populationPercentageVaccinatedSecondDose: string;
   totalPopulation: string;
   dosesAdministeredPer100: string;
+  appliedDosesPercentage?: string;
 }

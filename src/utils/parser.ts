@@ -1,12 +1,19 @@
 import {population, VaccinationDto, VaccinationIndicators} from '../models/vaccination.model';
 import {numberFormat} from './contants';
+import moment from 'moment';
 
 export const getIndicators = (data: VaccinationDto): VaccinationIndicators => {
   const totalFirstDoses = data.dosis1.reduce(accumulate);
   const totalSecondDoses = data.dosis2.reduce(accumulate);
+  const totalReceivedDoses = data.dosisdistribuidas
+    ? data.dosisdistribuidas.reduce(accumulate)
+    : undefined;
   const totalDoses = totalFirstDoses + totalSecondDoses;
 
   return {
+    lastUpdate: moment(data.fecha_inicial)
+      .add(data.dias - 1, 'day')
+      .format('DD/MM/yyyy'),
     totalAppliedDoses: new Intl.NumberFormat(numberFormat).format(totalDoses).toString(),
     totalAppliedFirstDoses: new Intl.NumberFormat(numberFormat).format(totalFirstDoses).toString(),
     totalAppliedSecondDoses: new Intl.NumberFormat(numberFormat)
@@ -24,6 +31,9 @@ export const getIndicators = (data: VaccinationDto): VaccinationIndicators => {
     dosesAdministeredPer100: Math.floor(
       ((totalFirstDoses + totalSecondDoses) * 100) / data.poblacion.personas,
     ).toString(),
+    appliedDosesPercentage: totalReceivedDoses
+      ? ((totalDoses * 100) / totalReceivedDoses).toFixed(2)
+      : undefined,
   };
 };
 

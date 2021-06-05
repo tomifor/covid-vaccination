@@ -17,11 +17,11 @@ const App = ({Component, pageProps}: AppProps) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleRouteChange = (url: string, loading: boolean) => {
+    const handleRouteChange = (url: string, load: boolean) => {
       const basePath = url.split('/')[1];
 
-      if (basePath === 'province' && loading) {
-        setLoading(true);
+      if (basePath === 'province') {
+        setLoading(load);
       } else {
         setLoading(false);
       }
@@ -40,6 +40,8 @@ const App = ({Component, pageProps}: AppProps) => {
       router.events.off('routeChangeError', handleRouteChange);
     };
   }, []);
+
+  console.log('Loading: ', loading);
 
   return (
     <div>

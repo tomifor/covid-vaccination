@@ -1,7 +1,7 @@
 import React, {FormEvent, useState} from 'react';
 import {Button} from 'primereact/button';
 import {Dropdown} from 'primereact/dropdown';
-import { municipalities, provinces } from '../../../utils/places-data';
+import {municipalities, provinces} from '../../../utils/places-data';
 import {useRouter} from 'next/router';
 
 const LocationForm = () => {
@@ -29,13 +29,15 @@ const LocationForm = () => {
           />
         </div>
         <div className="p-field p-col-12 p-md-4">
-          <label htmlFor="province">Municipio</label>
+          <label htmlFor="province">Municipio/Departamento</label>
           <Dropdown
+            filter
             className="p-inputtext-lg full-width"
             disabled={!province}
+            filterBy={'label'}
             options={province ? municipalities[province] : []}
             placeholder="Opcional"
-            value={province}
+            value={municipality}
             onChange={(e) => setMunicipality(e.target.value)}
           />
         </div>

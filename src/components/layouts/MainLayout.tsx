@@ -9,15 +9,15 @@ const MainLayout = () => {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>¡Bienvenido!</p>
-          <p> Aquí encontraras los datos de vacunación Covid-19 de tu provincia o municipio</p>
+          <p className={styles.subtitle}> Aquí encontraras los datos de vacunación Covid-19 de tu provincia o municipio</p>
         </div>
         <div className={styles.form}>
           <LocationForm />
         </div>
         <div className={'p-d-flex p-flex-column p-ai-center p-mr-1 p-ml-1 p-text-center'}>
           <p>
-            Para más información sobre como vacunarte y el estado del proceso podes visitar el sitio
-            oficial de Argentina
+            Para más información sobre como vacunarte y el estado del proceso de vacunación podes
+            visitar el sitio oficial de Argentina
           </p>
           <a
             href={'https://www.argentina.gob.ar/coronavirus/vacuna'}
