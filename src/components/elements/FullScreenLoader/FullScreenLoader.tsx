@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './FullscreenLoader.module.scss';
+import styles from './FullScreenLoader.module.scss';
 import {ProgressSpinner} from 'primereact/progressspinner';
 
 type Props = {
