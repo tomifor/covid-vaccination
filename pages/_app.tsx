@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import '../styles/globals.css';
 import type {AppProps} from 'next/app';
 import Footer from '../src/components/modules/footer/Footer';
 import Head from 'next/head';
@@ -10,6 +9,8 @@ import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import styles from '../styles/Home.module.scss';
 import {useRouter} from 'next/router';
+import FullscreenLoader from '../src/components/elements/FullScreenLoader/FullScreenLoader';
+import '../styles/globals.scss';
 
 const App = ({Component, pageProps}: AppProps) => {
   const router = useRouter();
@@ -17,8 +18,14 @@ const App = ({Component, pageProps}: AppProps) => {
 
   useEffect(() => {
     const handleRouteChange = (url: string, loading: boolean) => {
-      window.scrollTo(0, 0); // Scroll to top after routing
-      setLoading(loading);
+      const basePath = url.split('/')[1];
+
+      if (basePath === 'province' && loading) {
+        setLoading(true);
+      } else {
+        setLoading(false);
+      }
+      window.scrollTo(0, 0);
     };
 
     router.events.on('routeChangeStart', (e) => handleRouteChange(e, true));
@@ -41,11 +48,18 @@ const App = ({Component, pageProps}: AppProps) => {
         <meta content="Datos de vacunación Covid-19 Argentina " name="description" />
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <Nav />
-      <div className={styles.container}>
-        <Component {...pageProps} />
+      <div className={loading ? 'fixed' : ''}>
+        {loading && (
+          <div className={'full-screen-loader-container'}>
+            <FullscreenLoader />
+          </div>
+        )}
+        <Nav />
+        <div className={styles.container}>
+          <Component {...pageProps} />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 };
