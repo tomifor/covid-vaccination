@@ -17,8 +17,8 @@ type Props = {
 
 const DailyAppliedDoses = ({data}: Props) => {
   const total = data.totalDoses.map((e) => ({x: e.date, y: e.value}));
-  const doses1 = data.doses1.map((e) => ({x: e.date, y: e.value}));
-  const doses2 = data.doses2.map((e) => ({x: e.date, y: e.value}));
+  // const doses1 = data.doses1.map((e) => ({x: e.date, y: e.value}));
+  // const doses2 = data.doses2.map((e) => ({x: e.date, y: e.value}));
   const maxTotal = Math.max.apply(
     Math,
     total.map((o) => {
@@ -32,9 +32,9 @@ const DailyAppliedDoses = ({data}: Props) => {
     <div>
       <ChartContainer customClass={'ar-chart'} title={'Argentina'}>
         <VictoryChart
-          domain={{y: [0, maxTotal]}}
+          domain={{y: [0, maxTotal + maxTotal * 0.05]}}
           height={210}
-          padding={{top: 20, bottom: 25, right: 6, left: 20}}
+          padding={{top: 15, bottom: 25, right: 6, left: 20}}
           // containerComponent={
           //     <VictoryVoronoiContainer
           //         labels={({datum}) => `Fecha: ${datum.x}, \n ${datum.y}`}

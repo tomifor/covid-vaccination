@@ -15,8 +15,6 @@ const LocationDetailLayout: React.FC<Props> = ({data, location}): JSX.Element =>
   const indicators = getIndicators(data);
   const dailyAppliedDosesData = getDailyAppliedDoses(data);
 
-  console.log(dailyAppliedDosesData);
-
   return (
     <div className={styles.container}>
       <div className={styles.header}>
