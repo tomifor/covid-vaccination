@@ -1,8 +1,8 @@
 import React, {FormEvent, useState} from 'react';
 import {Button} from 'primereact/button';
 import {Dropdown} from 'primereact/dropdown';
-import {municipalities, provinces} from '../../../data/places-data';
 import {useRouter} from 'next/router';
+import { municipalities, provinces } from '../../../data/places-data'
 
 const LocationForm = () => {
   const router = useRouter();
