@@ -1,8 +1,15 @@
 import React from 'react';
 import {DailyAppliedDosesData} from '../../../models/chart.model';
-import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel, VictoryLegend, VictoryVoronoiContainer } from 'victory';
+import {
+  VictoryAxis,
+  VictoryChart,
+  VictoryLine,
+  VictoryLabel,
+  VictoryLegend,
+  VictoryVoronoiContainer,
+} from 'victory';
 import ChartContainer from './ChartContainer';
-import moment from 'moment'
+import moment from 'moment';
 
 type Props = {
   data: DailyAppliedDosesData;
@@ -75,7 +82,9 @@ const DailyAppliedDoses = ({data}: Props) => {
               },
             }}
             tickCount={10}
-            tickLabelComponent={<VictoryLabel angle={-60} style={{fontSize: '5px'}} y={200} dy={-9} />}
+            tickLabelComponent={
+              <VictoryLabel angle={-60} dy={-9} style={{fontSize: '5px'}} y={200} />
+            }
           />
           <VictoryLegend
             colorScale={legend.map((elem) => elem.color)}
