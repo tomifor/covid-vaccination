@@ -41,8 +41,6 @@ const App = ({Component, pageProps}: AppProps) => {
     };
   }, []);
 
-  console.log('Loading: ', loading);
-
   return (
     <div>
       <Head>

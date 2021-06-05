@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 import {GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType} from 'next';
 import LocationDetailLayout from '../../../../src/components/layouts/LocationDetailLayout';
 import {vaccinationService} from '../../../../src/services/vaccinationService/vaccinationService';
-import {municipalities} from '../../../../src/utils/places-data';
+import {municipalities} from '../../../../src/data/places-data';
 
 const MunicipalityDetail = ({
   data,

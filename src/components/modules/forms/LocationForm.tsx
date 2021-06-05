@@ -1,16 +1,18 @@
 import React, {FormEvent, useState} from 'react';
 import {Button} from 'primereact/button';
 import {Dropdown} from 'primereact/dropdown';
-import {municipalities, provinces} from '../../../utils/places-data';
+import {municipalities, provinces} from '../../../data/places-data';
 import {useRouter} from 'next/router';
 
 const LocationForm = () => {
   const router = useRouter();
   const [province, setProvince] = useState<string>('');
   const [municipality, setMunicipality] = useState<string>('');
+  const [submitting, setSubmitting] = useState<boolean>(false);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitting(true);
     router.push(`/province/${province}${municipality ? '/municipality/' + municipality : ''}`);
   };
 
@@ -44,8 +46,9 @@ const LocationForm = () => {
         <div className="p-field p-col-12 p-md-4 p-d-flex p-ai-end">
           <Button
             className="p-button-lg full-width"
-            disabled={!province}
+            disabled={!province || submitting}
             label={'Siguiente'}
+            loading={submitting}
             type={'submit'}
           />
         </div>

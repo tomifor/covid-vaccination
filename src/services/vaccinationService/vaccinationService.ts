@@ -8,8 +8,6 @@ export const vaccinationService = {
     return api
       .get(vaccinationRoutes.getMunicipalityData(province, municipality))
       .then((res) => {
-        console.log('Response: ', res);
-
         return res.data;
       })
       .catch((e) => {

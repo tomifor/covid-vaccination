@@ -3,7 +3,7 @@ import {useRouter} from 'next/router';
 import LocationDetailLayout from '../../../src/components/layouts/LocationDetailLayout';
 import {vaccinationService} from '../../../src/services/vaccinationService/vaccinationService';
 import {GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType} from 'next';
-import {provinces} from '../../../src/utils/places-data';
+import {provinces} from '../../../src/data/places-data';
 
 const ProvinceDetail = ({data, error}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
