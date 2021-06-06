@@ -41,7 +41,7 @@ const LocationIndicators = ({indicators}: Props): JSX.Element => {
         <div className={'p-col-12 p-sm-6 p-md-3 p-lg-3'}>
           <IndicatorCard
             title={'% dosis aplicadas sobre recibidas'}
-            value={indicators.appliedDosesPercentage}
+            value={indicators.appliedDosesPercentage + '%'}
           />
         </div>
       )}

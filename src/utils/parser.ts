@@ -37,9 +37,11 @@ export const getIndicators = (data: VaccinationDto): VaccinationIndicators => {
       ((totalFirstDoses + totalSecondDoses) * 100) / data.poblacion.personas,
     ).toString(),
     appliedDosesPercentage: totalReceivedDoses
-      ? ((totalDoses * 100) / totalReceivedDoses).toFixed(2)
+      ? ((totalDoses * 100) / totalReceivedDoses).toFixed(1)
       : undefined,
-    avgAppliedDoses7Days: averageAppliedDoses.toFixed(0),
+    avgAppliedDoses7Days: new Intl.NumberFormat(numberFormat).format(
+      Math.floor(averageAppliedDoses),
+    ),
   };
 };
 
