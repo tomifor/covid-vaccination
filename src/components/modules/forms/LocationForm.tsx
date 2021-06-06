@@ -11,9 +11,11 @@ const LocationForm = () => {
   const [submitting, setSubmitting] = useState<boolean>(false);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSubmitting(true);
-    router.push(`/province/${province}${municipality ? '/municipality/' + municipality : ''}`);
+    if (!submitting) {
+      event.preventDefault();
+      setSubmitting(true);
+      router.push(`/province/${province}${municipality ? '/municipality/' + municipality : ''}`);
+    }
   };
 
   return (
@@ -46,9 +48,8 @@ const LocationForm = () => {
         <div className="p-field p-col-12 p-md-4 p-d-flex p-ai-end">
           <Button
             className="p-button-lg full-width"
-            disabled={!province}
-            label={'Siguiente'}
-            loading={submitting}
+            disabled={!province || submitting}
+            label={submitting ? 'Cargando...' : 'Siguiente'}
             type={'submit'}
           />
         </div>
