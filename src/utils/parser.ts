@@ -10,6 +10,11 @@ export const getIndicators = (data: VaccinationDto): VaccinationIndicators => {
     : undefined;
   const totalDoses = totalFirstDoses + totalSecondDoses;
 
+  const averageAppliedDoses =
+    (data.dosis1.slice(data.dosis1.length - 8, data.dosis1.length - 1).reduce(accumulate) +
+      data.dosis2.slice(data.dosis2.length - 8, data.dosis2.length - 1).reduce(accumulate)) /
+    7;
+
   return {
     lastUpdate: moment(data.fecha_inicial)
       .add(data.dias - 1, 'day')
@@ -34,6 +39,7 @@ export const getIndicators = (data: VaccinationDto): VaccinationIndicators => {
     appliedDosesPercentage: totalReceivedDoses
       ? ((totalDoses * 100) / totalReceivedDoses).toFixed(2)
       : undefined,
+    avgAppliedDoses7Days: averageAppliedDoses.toFixed(0),
   };
 };
 

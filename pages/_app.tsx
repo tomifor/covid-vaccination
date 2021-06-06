@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import type {AppProps} from 'next/app';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primeflex/primeflex.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import '../styles/globals.scss';
+import styles from '../styles/Home.module.scss';
 import Footer from '../src/components/modules/footer/Footer';
 import Head from 'next/head';
 import Nav from '../src/components/modules/Nav/Nav';
-import 'primeflex/primeflex.css';
-import 'primeicons/primeicons.css';
-import 'primereact/resources/primereact.min.css';
-import 'primereact/resources/themes/saga-blue/theme.css';
-import styles from '../styles/Home.module.scss';
 import {useRouter} from 'next/router';
 import FullscreenLoader from '../src/components/elements/FullScreenLoader/FullScreenLoader';
-import '../styles/globals.scss';
 
 const App = ({Component, pageProps}: AppProps) => {
   const router = useRouter();

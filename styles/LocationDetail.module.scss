@@ -2,12 +2,17 @@
   .header {
     text-align: center;
     background-color: lighten(#D93223, 40);
-    padding: 15px 0;
+    padding: 20px 0;
     .title {
       color: #D93223;
       font-family: 'Squada One', 'Lato', Helvetica, sans-serif;
       font-size: 2.5rem;
       margin: 15px 0;
+    }
+    .population {
+      color: #D93223;
+      margin: 0;
+      font-weight: bold;
     }
   }
   .indicators {

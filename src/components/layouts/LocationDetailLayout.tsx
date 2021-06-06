@@ -19,6 +19,7 @@ const LocationDetailLayout: React.FC<Props> = ({data, location}): JSX.Element =>
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>{location?.label}</h1>
+        <p className={styles.population}>Población total: {indicators.totalPopulation}</p>
       </div>
       <div className={'p-text-center'}>
         <p className={'p-mb-1 p-mt-2'}>Última actualización: {indicators.lastUpdate}</p>

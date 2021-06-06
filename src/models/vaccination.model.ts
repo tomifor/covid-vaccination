@@ -26,4 +26,5 @@ export interface VaccinationIndicators {
   totalPopulation: string;
   dosesAdministeredPer100: string;
   appliedDosesPercentage?: string;
+  avgAppliedDoses7Days: string;
 }

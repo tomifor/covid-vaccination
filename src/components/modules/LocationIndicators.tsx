@@ -46,7 +46,10 @@ const LocationIndicators = ({indicators}: Props): JSX.Element => {
         </div>
       )}
       <div className={'p-col-12 p-sm-6 p-md-3 p-lg-3'}>
-        <IndicatorCard title={'Población total'} value={indicators.totalPopulation} />
+        <IndicatorCard
+          title={'Promedio dosis aplicadas últimos 7 días (por día)'}
+          value={indicators.avgAppliedDoses7Days}
+        />
       </div>
     </div>
   );

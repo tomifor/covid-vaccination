@@ -3,10 +3,12 @@ import styles from '../../../../styles/Home.module.scss';
 import Image from 'next/image';
 
 const Footer = () => {
+  const version = '1.0.0';
+
   return (
     <footer className={styles.footer}>
       <a href="https://twitter.com/tomifor" rel="noopener noreferrer" target="_blank">
-        Developed by @tomifor
+        Developed by @tomifor - V {version}
       </a>
       <a href="https://covidstats.com.ar/" rel="noopener noreferrer" target="_blank">
         Data by covidstats.com.ar

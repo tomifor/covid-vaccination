@@ -1,8 +1,8 @@
 import React, {FormEvent, useState} from 'react';
-import {Button} from 'primereact/button';
 import {Dropdown} from 'primereact/dropdown';
 import {useRouter} from 'next/router';
-import { municipalities, provinces } from '../../../data/places-data'
+import {municipalities, provinces} from '../../../data/places-data';
+import Button from '../../elements/Button/Button';
 
 const LocationForm = () => {
   const router = useRouter();
@@ -46,7 +46,7 @@ const LocationForm = () => {
         <div className="p-field p-col-12 p-md-4 p-d-flex p-ai-end">
           <Button
             className="p-button-lg full-width"
-            disabled={!province || submitting}
+            disabled={!province}
             label={'Siguiente'}
             loading={submitting}
             type={'submit'}

@@ -51,7 +51,6 @@ const DailyAppliedDoses = ({data}: Props) => {
             height={100}
             interpolation="natural"
             labelComponent={<VictoryLabel renderInPortal dx={-10} dy={-2} style={{fontSize: 8}} />}
-            labels={({datum}) => (total && total[total.length - 1].y === datum.y ? datum.y : '')}
             minDomain={{y: 0}}
             name={'total-doses'}
             style={{
@@ -70,7 +69,7 @@ const DailyAppliedDoses = ({data}: Props) => {
               },
             }}
             tickCount={8}
-            tickFormat={(t) => `${t / 1000}k`}
+            tickFormat={(t) => `${t >= 1000 ? t / 1000 + 'k' : t}`}
             tickLabelComponent={<VictoryLabel style={{fontSize: '8px'}} x={17} />}
           />
           <VictoryAxis
