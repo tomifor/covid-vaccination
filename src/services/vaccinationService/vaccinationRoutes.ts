@@ -5,7 +5,10 @@ const getMunicipalityData = (province: string, municipality?: string) =>
     municipality ? '&departamentos%5B%5D=' + municipality : ''
   }`;
 
+const getArgentinaData = () => `${BASE_URL}?comprimido=1`;
+
 export const vaccinationRoutes = {
   getMunicipalityData: (province: string, municipality?: string) =>
     getMunicipalityData(province, municipality),
+  getArgentinaData: () => getArgentinaData(),
 };

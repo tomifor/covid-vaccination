@@ -9,10 +9,12 @@ import DailyAppliedDoses from '../modules/charts/DailyAppliedDoses';
 
 type Props = {
   data: VaccinationDto;
+  dataArg: VaccinationDto;
   location?: Option;
 };
-const LocationDetailLayout: React.FC<Props> = ({data, location}): JSX.Element => {
+const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location}): JSX.Element => {
   const indicators = getIndicators(data);
+  const indicatorsArg = dataArg ? getIndicators(dataArg) : undefined;
   const dailyAppliedDosesData = getDailyAppliedDoses(data);
 
   return (
@@ -25,7 +27,7 @@ const LocationDetailLayout: React.FC<Props> = ({data, location}): JSX.Element =>
         <p className={'p-mb-1 p-mt-2'}>Última actualización: {indicators.lastUpdate}</p>
       </div>
       <div className={styles.bodyContainer}>
-        <LocationIndicators indicators={indicators} />
+        <LocationIndicators indicators={indicators} indicatorsArg={indicatorsArg} />
         <DailyAppliedDoses data={dailyAppliedDosesData} />
       </div>
     </div>
