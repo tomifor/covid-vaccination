@@ -10,10 +10,12 @@ import Button from '../elements/Button/Button';
 
 type Props = {
   data: VaccinationDto;
+  dataArg: VaccinationDto;
   location?: Option;
 };
-const LocationDetailLayout: React.FC<Props> = ({data, location}): JSX.Element => {
+const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location}): JSX.Element => {
   const indicators = getIndicators(data);
+  const indicatorsArg = dataArg ? getIndicators(dataArg) : undefined;
   const dailyAppliedDosesData = getDailyAppliedDoses(data);
   const [comparisonModalForm, setComparisonModalForm] = useState<boolean>(false);
 
@@ -33,7 +35,7 @@ const LocationDetailLayout: React.FC<Props> = ({data, location}): JSX.Element =>
             onClick={() => setComparisonModalForm(true)}
           />
         </div>
-        <LocationIndicators indicators={indicators} />
+        <LocationIndicators indicators={indicators} indicatorsArg={indicatorsArg} />
         <DailyAppliedDoses data={dailyAppliedDosesData} />
       </div>
     </div>

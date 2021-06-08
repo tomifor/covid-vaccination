@@ -4,9 +4,10 @@ import styles from './IndicatorCard.module.scss';
 type Props = {
   title: string;
   value: string;
+  subValue?: string;
 };
 
-const IndicatorCard: React.FC<Props> = ({title, value}): JSX.Element => {
+const IndicatorCard: React.FC<Props> = ({title, value, subValue}): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -14,6 +15,7 @@ const IndicatorCard: React.FC<Props> = ({title, value}): JSX.Element => {
       </div>
       <div className={styles.body}>
         <p className={styles.value}>{value}</p>
+        {subValue && <p className={styles.subValue}>{subValue}</p>}
       </div>
     </div>
   );

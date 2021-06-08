@@ -14,4 +14,14 @@ export const vaccinationService = {
         console.log('Error: ', e);
       });
   },
+  getArgentinaData: () => {
+    return api
+      .get(vaccinationRoutes.getArgentinaData())
+      .then((res) => {
+        return res.data;
+      })
+      .catch((e) => {
+        console.log('Error: ', e);
+      });
+  },
 };

@@ -5,14 +5,20 @@ import {vaccinationService} from '../../../src/services/vaccinationService/vacci
 import {GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType} from 'next';
 import {provinces} from '../../../src/data/places-data';
 
-const ProvinceDetail = ({data, error}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const ProvinceDetail = ({
+  data,
+  dataArg,
+  error,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
   const provinceId = router.query.provinceId ? router.query.provinceId.toString() : '';
 
-  console.log(data);
-
   return (
-    <LocationDetailLayout data={data} location={provinces.find((p) => p.value === provinceId)} />
+    <LocationDetailLayout
+      data={data}
+      dataArg={dataArg}
+      location={provinces.find((p) => p.value === provinceId)}
+    />
   );
 };
 
@@ -25,9 +31,11 @@ export const getServerSideProps: GetServerSideProps = async (
 
   try {
     if (provinceId) {
-      const res = await vaccinationService.getMunicipalityData(provinceId.toString());
+      const req = vaccinationService.getMunicipalityData(provinceId.toString());
+      const reqArg = vaccinationService.getArgentinaData();
+      const res = await Promise.all([req, reqArg]);
 
-      return {props: {data: res, error: false}};
+      return {props: {data: res[0], dataArg: res[1], error: false}};
     }
   } catch (e) {
     console.log(e);
