@@ -7,6 +7,9 @@ import LocationIndicators from '../modules/LocationIndicators';
 import {getDailyAppliedDoses} from '../../utils/chartsUtils';
 import DailyAppliedDoses from '../modules/charts/DailyAppliedDoses';
 import Button from '../elements/Button/Button';
+import LocationFormModal from '../modules/modals/LocationFormModal';
+import {useRouter} from 'next/router';
+import {Location} from '../../models/location.model';
 
 type Props = {
   data: VaccinationDto;
@@ -18,6 +21,20 @@ const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location}): JSX.E
   const indicatorsArg = dataArg ? getIndicators(dataArg) : undefined;
   const dailyAppliedDosesData = getDailyAppliedDoses(data);
   const [comparisonModalForm, setComparisonModalForm] = useState<boolean>(false);
+  const router = useRouter();
+
+  const redirectToCompare = (location: Location) => {
+    console.log(location);
+    const {provinceId, municipalityId} = router.query;
+
+    router.push(
+      `/compare?province1=${provinceId}${
+        municipalityId ? '&municipality1=' + municipalityId : ''
+      }&province2=${location.province}${
+        location?.municipality ? '&municipality2=' + location.municipality : ''
+      }`,
+    );
+  };
 
   return (
     <div className={styles.container}>
@@ -38,6 +55,11 @@ const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location}): JSX.E
         <LocationIndicators indicators={indicators} indicatorsArg={indicatorsArg} />
         <DailyAppliedDoses data={dailyAppliedDosesData} />
       </div>
+      <LocationFormModal
+        visible={comparisonModalForm}
+        onClose={() => setComparisonModalForm(false)}
+        onSubmit={redirectToCompare}
+      />
     </div>
   );
 };
