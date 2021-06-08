@@ -5,15 +5,20 @@ import {vaccinationService} from '../../../src/services/vaccinationService/vacci
 import {GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType} from 'next';
 import {provinces} from '../../../src/data/places-data';
 
-const ProvinceDetail = ({data, dataArg, error}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const ProvinceDetail = ({
+  data,
+  dataArg,
+  error,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
   const provinceId = router.query.provinceId ? router.query.provinceId.toString() : '';
 
-  console.log(data);
-  console.log(dataArg);
-
   return (
-    <LocationDetailLayout data={data} dataArg={dataArg} location={provinces.find((p) => p.value === provinceId)} />
+    <LocationDetailLayout
+      data={data}
+      dataArg={dataArg}
+      location={provinces.find((p) => p.value === provinceId)}
+    />
   );
 };
 
