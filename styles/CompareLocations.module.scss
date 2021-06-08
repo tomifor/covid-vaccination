@@ -1,0 +1,36 @@
+@import "colors";
+
+$maxWidth: 500px;
+
+.container {
+  .header {
+    position: sticky;
+    top: 0;
+    box-shadow: 0 3px 2px -2px #d7d7d7;
+    z-index: 1;
+    background-color: white;
+    .headerRow {
+      max-width: $maxWidth;
+      margin: auto;
+    }
+    .locationTitle {
+      &1 {
+        border-right: 1px solid $light-gray;
+        padding: 15px 10px;
+      }
+      &2 {
+        padding: 15px 10px;
+      }
+
+    }
+    .title {
+      margin: 0 10px;
+      font-size: 20px;
+      color: #f85f53;
+    }
+  }
+  .valuesContainer {
+    max-width: $maxWidth;
+    margin: 50px auto;
+  }
+}
