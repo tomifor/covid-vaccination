@@ -24,7 +24,7 @@ const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location}): JSX.E
   const router = useRouter();
 
   const redirectToCompare = (location: Location) => {
-    console.log(location);
+    setComparisonModalForm(false);
     const {provinceId, municipalityId} = router.query;
 
     router.push(

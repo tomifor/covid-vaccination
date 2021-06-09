@@ -20,7 +20,7 @@ const App = ({Component, pageProps}: AppProps) => {
     const handleRouteChange = (url: string, load: boolean) => {
       const basePath = url.split('/')[1];
 
-      if (basePath === 'province') {
+      if (basePath !== '') {
         setLoading(load);
       } else {
         setLoading(false);
