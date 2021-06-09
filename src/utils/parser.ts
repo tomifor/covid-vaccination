@@ -15,9 +15,12 @@ export const getIndicators = (data: VaccinationDto): VaccinationIndicators => {
       data.dosis2.slice(data.dosis2.length - 8, data.dosis2.length - 1).reduce(accumulate)) /
     7;
 
+  const discountDays: number =
+    data.dosis1[data.dosis1.length - 1] === 0 && data.dosis2[data.dosis2.length - 1] === 0 ? 2 : 1;
+
   return {
     lastUpdate: moment(data.fecha_inicial)
-      .add(data.dias - 1, 'day')
+      .add(data.dias - discountDays, 'day')
       .format('DD/MM/yyyy'),
     totalAppliedDoses: new Intl.NumberFormat(numberFormat).format(totalDoses).toString(),
     totalAppliedFirstDoses: new Intl.NumberFormat(numberFormat).format(totalFirstDoses).toString(),

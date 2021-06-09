@@ -9,7 +9,9 @@ const MainLayout = () => {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>¡Bienvenido!</p>
-          <p className={styles.subtitle}> Aquí encontraras los datos de vacunación Covid-19 de tu provincia o municipio</p>
+          <p className={styles.subtitle}>
+            Aquí encontraras los datos de vacunación Covid-19 de tu provincia o municipio
+          </p>
         </div>
         <div className={styles.form}>
           <LocationForm />
