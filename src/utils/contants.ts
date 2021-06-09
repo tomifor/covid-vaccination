@@ -1,2 +1,1 @@
-
-export const numberFormat = 'es-AR'
+export const numberFormat = 'es-AR';

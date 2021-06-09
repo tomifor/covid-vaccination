@@ -3,7 +3,7 @@ import styles from '../../../../styles/Home.module.scss';
 import Image from 'next/image';
 
 const Footer = () => {
-  const version = '1.0.0';
+  const version = '1.1.0';
 
   return (
     <footer className={styles.footer}>
