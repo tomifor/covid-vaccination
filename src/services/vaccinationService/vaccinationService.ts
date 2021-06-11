@@ -24,4 +24,7 @@ export const vaccinationService = {
         console.log('Error: ', e);
       });
   },
+  getAccumulatedRates: () => {
+
+  }
 };

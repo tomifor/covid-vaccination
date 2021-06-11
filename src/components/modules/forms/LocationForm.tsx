@@ -25,7 +25,7 @@ const LocationForm = () => {
           <label htmlFor="province">Provincia</label>
           <Dropdown
             className="p-inputtext-lg full-width"
-            id={'province'}
+            inputId={'province'}
             options={provinces}
             placeholder="Seleccione una provincia"
             value={province}
@@ -33,12 +33,15 @@ const LocationForm = () => {
           />
         </div>
         <div className="p-field p-col-12 p-md-4">
-          <label htmlFor="province">Municipio/Departamento</label>
+          <label htmlFor="department">Municipio/Departamento</label>
           <Dropdown
             filter
+            showClear
             className="p-inputtext-lg full-width"
             disabled={!province}
+            emptyFilterMessage={'No hay resultados'}
             filterBy={'label'}
+            inputId={'department'}
             options={province ? municipalities[province] : []}
             placeholder="Opcional"
             value={municipality}

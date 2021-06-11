@@ -7,18 +7,19 @@ import {
   VictoryLabel,
   VictoryLegend,
   VictoryVoronoiContainer,
+  VictoryArea,
 } from 'victory';
 import ChartContainer from './ChartContainer';
 import moment from 'moment';
+import {numberFormat} from '../../../utils/contants';
 
 type Props = {
   data: DailyAppliedDosesData;
+  locationName?: string;
 };
 
-const DailyAppliedDoses = ({data}: Props) => {
+const DailyAppliedDoses = ({data, locationName}: Props) => {
   const total = data.totalDoses.map((e) => ({x: e.date, y: e.value}));
-  // const doses1 = data.doses1.map((e) => ({x: e.date, y: e.value}));
-  // const doses2 = data.doses2.map((e) => ({x: e.date, y: e.value}));
   const maxTotal = Math.max.apply(
     Math,
     total.map((o) => {
@@ -26,11 +27,11 @@ const DailyAppliedDoses = ({data}: Props) => {
     }),
   );
 
-  const legend = [{name: 'Dosis diarias aplicadas', color: '#2d6ebd'}];
+  const legend = [{name: locationName ? locationName : '', color: '#2d6ebd'}];
 
   return (
     <div>
-      <ChartContainer customClass={'ar-chart'} title={'Argentina'}>
+      <ChartContainer customClass={'ar-chart'} title={'Dosis diarias aplicadas'}>
         <VictoryChart
           domain={{y: [0, maxTotal + maxTotal * 0.05]}}
           height={210}
@@ -42,7 +43,7 @@ const DailyAppliedDoses = ({data}: Props) => {
           // }
           scale={{x: 'time', y: 'linear'}}
         >
-          <VictoryLine
+          <VictoryArea
             animate={{
               duration: 1000,
               onLoad: {duration: 1000},
@@ -50,33 +51,38 @@ const DailyAppliedDoses = ({data}: Props) => {
             data={total}
             height={100}
             interpolation="natural"
-            labelComponent={<VictoryLabel renderInPortal dx={-10} dy={-2} style={{fontSize: 8}} />}
+            labelComponent={<VictoryLabel renderInPortal dy={-18} style={{fontSize: 6}} />}
+            labels={({datum, index}) =>
+              (index % 20 === 0 || datum.y === maxTotal) && index > 0
+                ? new Intl.NumberFormat(numberFormat).format(datum.y)
+                : ''
+            }
             minDomain={{y: 0}}
             name={'total-doses'}
             style={{
-              data: {stroke: '#2d6ebd', strokeWidth: 1, strokeLinecap: 'round'},
+              data: {stroke: '#2d6ebd', strokeWidth: 1, strokeLinecap: 'round', fill: '#c0d8ff'},
               parent: {border: '1px solid #ccc'},
               labels: {
                 fontSize: 10,
               },
             }}
           />
-          <VictoryAxis
-            dependentAxis
-            style={{
-              axis: {
-                stroke: '#636363',
-              },
-            }}
-            tickCount={8}
-            tickFormat={(t) => `${t >= 1000 ? t / 1000 + 'k' : t}`}
-            tickLabelComponent={<VictoryLabel style={{fontSize: '8px'}} x={17} />}
-          />
+          {/*<VictoryAxis*/}
+          {/*  dependentAxis*/}
+          {/*  style={{*/}
+          {/*    axis: {*/}
+          {/*      stroke: '#636363',*/}
+          {/*    },*/}
+          {/*  }}*/}
+          {/*  tickCount={8}*/}
+          {/*  tickFormat={(t) => `${t >= 1000 ? t / 1000 + 'k' : t}`}*/}
+          {/*  tickLabelComponent={<VictoryLabel style={{fontSize: '8px'}} x={17} />}*/}
+          {/*/>*/}
           <VictoryAxis
             scale={{x: 'time'}}
             style={{
               axis: {
-                stroke: '#636363',
+                stroke: '#fff',
                 paddingRight: '40px',
               },
             }}

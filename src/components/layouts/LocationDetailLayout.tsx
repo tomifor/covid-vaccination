@@ -47,13 +47,13 @@ const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location}): JSX.E
         <div className={styles.lastUpdate + ' p-d-flex p-jc-between p-ai-center p-mt-2'}>
           <p className={'p-mb-1 p-mt-2'}>Última actualización: {indicators.lastUpdate}</p>
           <Button
-            className={'p-button-outlined p-button-sm'}
+            className={'btn-compare p-button-outlined p-button-sm'}
             label={'Comparar'}
             onClick={() => setComparisonModalForm(true)}
           />
         </div>
         <LocationIndicators indicators={indicators} indicatorsArg={indicatorsArg} />
-        <DailyAppliedDoses data={dailyAppliedDosesData} />
+        <DailyAppliedDoses data={dailyAppliedDosesData} locationName={location?.label} />
       </div>
       <LocationFormModal
         visible={comparisonModalForm}

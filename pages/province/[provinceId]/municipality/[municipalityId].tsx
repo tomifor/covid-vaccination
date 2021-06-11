@@ -23,8 +23,6 @@ const MunicipalityDetail = ({
     return <div />;
   }
 
-  console.log(dataArg);
-
   return (
     <LocationDetailLayout
       data={data}

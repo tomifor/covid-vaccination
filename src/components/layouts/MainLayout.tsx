@@ -18,7 +18,7 @@ const MainLayout = () => {
         </div>
         <div className={'p-d-flex p-flex-column p-ai-center p-mr-1 p-ml-1 p-text-center'}>
           <p>
-            Para más información sobre como vacunarte y el estado del proceso de vacunación podes
+            Para más información sobre como vacunarte y el estado del proceso de vacunación podés
             visitar el sitio oficial de Argentina
           </p>
           <a
@@ -27,7 +27,7 @@ const MainLayout = () => {
             target={'_blank'}
           >
             <Button
-              className="p-button-outlined"
+              className="btn-visit p-button-outlined p-mb-6"
               icon="pi pi-external-link"
               iconPos={'right'}
               label="Visitar"
