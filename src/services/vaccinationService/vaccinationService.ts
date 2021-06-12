@@ -2,6 +2,7 @@ import {VaccinationDto} from '../../models/vaccination.model';
 import api from '../api';
 
 import {vaccinationRoutes} from './vaccinationRoutes';
+import moment from 'moment';
 
 export const vaccinationService = {
   getMunicipalityData: (province: string, municipality?: string): Promise<VaccinationDto> => {
@@ -24,7 +25,15 @@ export const vaccinationService = {
         console.log('Error: ', e);
       });
   },
-  getAccumulatedRates: () => {
-
-  }
+  getAccumulatedRates: (province: string, municipality?: string) => {
+    const today = moment().format('yyyy-MM-DD');
+    return api
+      .get(vaccinationRoutes.getAccumulatedRates(today, province, municipality))
+      .then((res) => {
+        return res.data;
+      })
+      .catch((e) => {
+        console.log('Error: ', e);
+      });
+  },
 };

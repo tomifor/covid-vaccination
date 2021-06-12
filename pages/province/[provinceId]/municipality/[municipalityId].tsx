@@ -8,6 +8,7 @@ import {municipalities} from '../../../../src/data/places-data';
 const MunicipalityDetail = ({
   data,
   dataArg,
+  rates,
   error,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const MunicipalityDetail = ({
       data={data}
       dataArg={dataArg}
       location={{value: municipality.value, label: municipality.label}}
+      rates={rates}
     />
   );
 };
@@ -46,9 +48,13 @@ export const getServerSideProps: GetServerSideProps = async (
         municipalityId.toString(),
       );
       const reqArg = vaccinationService.getArgentinaData();
-      const res = await Promise.all([req, reqArg]);
+      const reqRates = vaccinationService.getAccumulatedRates(
+        provinceId.toString(),
+        municipalityId.toString(),
+      );
+      const res = await Promise.all([req, reqArg, reqRates]);
 
-      return {props: {data: res[0], dataArg: res[1], error: false}};
+      return {props: {data: res[0], dataArg: res[1], rates: res[2], error: false}};
     } else {
       return {props: {data: undefined, error: true}};
     }

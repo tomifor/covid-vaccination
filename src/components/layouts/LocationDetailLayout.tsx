@@ -10,18 +10,23 @@ import Button from '../elements/Button/Button';
 import LocationFormModal from '../modules/modals/LocationFormModal';
 import {useRouter} from 'next/router';
 import {Location} from '../../models/location.model';
+import AccumulativeRatesChart from '../modules/charts/AccumulativeRatesChart';
+import {Rates} from '../../models/rates.model';
 
 type Props = {
   data: VaccinationDto;
   dataArg: VaccinationDto;
   location?: Option;
+  rates?: Rates[];
 };
-const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location}): JSX.Element => {
+const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location, rates}): JSX.Element => {
   const indicators = getIndicators(data);
   const indicatorsArg = dataArg ? getIndicators(dataArg) : undefined;
   const dailyAppliedDosesData = getDailyAppliedDoses(data);
   const [comparisonModalForm, setComparisonModalForm] = useState<boolean>(false);
   const router = useRouter();
+
+  console.log(rates);
 
   const redirectToCompare = (location: Location) => {
     setComparisonModalForm(false);
@@ -54,6 +59,14 @@ const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location}): JSX.E
         </div>
         <LocationIndicators indicators={indicators} indicatorsArg={indicatorsArg} />
         <DailyAppliedDoses data={dailyAppliedDosesData} locationName={location?.label} />
+        <div className={'p-grid'}>
+          <div className={'p-col-12 p-md-6'}>
+            <AccumulativeRatesChart data={rates} field={'dosis1'} title={'Primera dosis'} />
+          </div>
+          <div className={'p-col-12 p-md-6'}>
+            <AccumulativeRatesChart data={rates} field={'dosis2'} title={'Segunda dosis'} />
+          </div>
+        </div>
       </div>
       <LocationFormModal
         visible={comparisonModalForm}

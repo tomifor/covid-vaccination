@@ -8,6 +8,7 @@ import {provinces} from '../../../src/data/places-data';
 const ProvinceDetail = ({
   data,
   dataArg,
+  rates,
   error,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
@@ -18,6 +19,7 @@ const ProvinceDetail = ({
       data={data}
       dataArg={dataArg}
       location={provinces.find((p) => p.value === provinceId)}
+      rates={rates}
     />
   );
 };
@@ -33,9 +35,10 @@ export const getServerSideProps: GetServerSideProps = async (
     if (provinceId) {
       const req = vaccinationService.getMunicipalityData(provinceId.toString());
       const reqArg = vaccinationService.getArgentinaData();
-      const res = await Promise.all([req, reqArg]);
+      const reqRates = vaccinationService.getAccumulatedRates(provinceId.toString());
+      const res = await Promise.all([req, reqArg, reqRates]);
 
-      return {props: {data: res[0], dataArg: res[1], error: false}};
+      return {props: {data: res[0], dataArg: res[1], rates: res[2], error: false}};
     }
   } catch (e) {
     console.log(e);

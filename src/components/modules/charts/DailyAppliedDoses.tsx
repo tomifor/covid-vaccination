@@ -19,6 +19,7 @@ type Props = {
 };
 
 const DailyAppliedDoses = ({data, locationName}: Props) => {
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 576 : true;
   const total = data.totalDoses.map((e) => ({x: e.date, y: e.value}));
   const maxTotal = Math.max.apply(
     Math,
@@ -29,13 +30,19 @@ const DailyAppliedDoses = ({data, locationName}: Props) => {
 
   const legend = [{name: locationName ? locationName : '', color: '#2d6ebd'}];
 
+  const getTickFormat = (t: any) => {
+    const dates = t.split('/');
+
+    return dates[0] + '-' + dates[1];
+  };
+
   return (
     <div>
       <ChartContainer customClass={'ar-chart'} title={'Dosis diarias aplicadas'}>
         <VictoryChart
           domain={{y: [0, maxTotal + maxTotal * 0.05]}}
-          height={210}
-          padding={{top: 15, bottom: 25, right: 6, left: 20}}
+          height={isMobile ? 300 : 230}
+          padding={{top: 15, bottom: 25, right: 11, left: isMobile ? 30 : 20}}
           // containerComponent={
           //     <VictoryVoronoiContainer
           //         labels={({datum}) => `Fecha: ${datum.x}, \n ${datum.y}`}
@@ -49,11 +56,11 @@ const DailyAppliedDoses = ({data, locationName}: Props) => {
               onLoad: {duration: 1000},
             }}
             data={total}
-            height={100}
+            height={200}
             interpolation="natural"
             labelComponent={<VictoryLabel renderInPortal dy={-18} style={{fontSize: 6}} />}
             labels={({datum, index}) =>
-              (index % 20 === 0 || datum.y === maxTotal) && index > 0
+              (index % 20 === 0 || datum.y === maxTotal) && index > 0 && !isMobile
                 ? new Intl.NumberFormat(numberFormat).format(datum.y)
                 : ''
             }
@@ -67,17 +74,19 @@ const DailyAppliedDoses = ({data, locationName}: Props) => {
               },
             }}
           />
-          {/*<VictoryAxis*/}
-          {/*  dependentAxis*/}
-          {/*  style={{*/}
-          {/*    axis: {*/}
-          {/*      stroke: '#636363',*/}
-          {/*    },*/}
-          {/*  }}*/}
-          {/*  tickCount={8}*/}
-          {/*  tickFormat={(t) => `${t >= 1000 ? t / 1000 + 'k' : t}`}*/}
-          {/*  tickLabelComponent={<VictoryLabel style={{fontSize: '8px'}} x={17} />}*/}
-          {/*/>*/}
+          <VictoryAxis
+            dependentAxis
+            style={{
+              axis: {
+                stroke: '#fff',
+              },
+            }}
+            tickCount={8}
+            tickFormat={(t) => `${t >= 1000 ? t / 1000 + 'k' : t}`}
+            tickLabelComponent={
+              <VictoryLabel style={{fontSize: isMobile ? '14px' : '8px'}} x={isMobile ? 26 : 17} />
+            }
+          />
           <VictoryAxis
             scale={{x: 'time'}}
             style={{
@@ -86,9 +95,15 @@ const DailyAppliedDoses = ({data, locationName}: Props) => {
                 paddingRight: '40px',
               },
             }}
-            tickCount={10}
+            tickCount={isMobile ? 5 : 10}
+            tickFormat={getTickFormat}
             tickLabelComponent={
-              <VictoryLabel angle={-60} dy={-9} style={{fontSize: '5px'}} y={200} />
+              <VictoryLabel
+                angle={0}
+                dy={-9}
+                style={{fontSize: isMobile ? '12px' : '5px'}}
+                y={isMobile ? 290 : 218}
+              />
             }
           />
           <VictoryLegend
@@ -97,10 +112,10 @@ const DailyAppliedDoses = ({data, locationName}: Props) => {
             gutter={10}
             orientation="horizontal"
             style={{
-              labels: {fontWeight: 400, fontSize: 8},
+              labels: {fontWeight: 400, fontSize: isMobile ? 16 : 8},
             }}
             symbolSpacer={5}
-            x={25}
+            x={isMobile ? 35 : 20}
             y={20}
           />
         </VictoryChart>
