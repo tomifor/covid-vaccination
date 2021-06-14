@@ -12,6 +12,7 @@ import {useRouter} from 'next/router';
 import {Location} from '../../models/location.model';
 import AccumulativeRatesChart from '../modules/charts/AccumulativeRatesChart';
 import {Rates} from '../../models/rates.model';
+import {Message} from 'primereact/message';
 
 type Props = {
   data: VaccinationDto;
@@ -26,7 +27,8 @@ const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location, rates})
   const [comparisonModalForm, setComparisonModalForm] = useState<boolean>(false);
   const router = useRouter();
 
-  console.log(rates);
+  console.log(data);
+  console.log(indicators);
 
   const redirectToCompare = (location: Location) => {
     setComparisonModalForm(false);
@@ -66,6 +68,13 @@ const LocationDetailLayout: React.FC<Props> = ({data, dataArg, location, rates})
           <div className={'p-col-12 p-md-6'}>
             <AccumulativeRatesChart data={rates} field={'dosis2'} title={'Segunda dosis'} />
           </div>
+        </div>
+        <div>
+          <Message
+            className={'full-width p-mt-4'}
+            severity="warn"
+            text="Aclaración: en ciertos casos se puede superar el 100% por dos posibles errores en los datos: 1) Proyección de población 2020 errada. 2) Criterio de residencia distinto entre lo que es el censo y el domicilio de vacunación.  "
+          />
         </div>
       </div>
       <LocationFormModal
